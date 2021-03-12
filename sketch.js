@@ -4,7 +4,6 @@ var gameState = PLAY;
 var path,boy,cash,diamonds,jwellery,sword, end;
 var pathImg,boyImg,cashImg,diamondsImg,jwelleryImg,swordImg, endImg;
 var score = 0;
-var countTouch = 0;
 var cashG,diamondsG,jwelleryG,swordGroup;
 
 function preload(){
@@ -22,7 +21,7 @@ function setup(){
 // Moving background
 path=createSprite(150,200);
 path.addImage(pathImg);
-path.velocityY = 4;
+path.velocityY = (4 + 2*score/400);
 path.scale = 0.9;
 
 
@@ -76,12 +75,7 @@ function draw() {
       score = score + 500;
     }
     else{
-      if(swordGroup.isTouching(boy)) {
-        swordGroup.destroyEach();
-        countTouch = countTouch + 1;
-      }
-
-      if( swordGroup.isTouching(boy) && countTouch === 5 ) {
+      if(boy.isTouching(swordGroup) ) {
         swordGroup.destroyEach();
         gameState = END;
     }
@@ -104,6 +98,7 @@ edges= createEdgeSprites();
   textSize(20);
   fill(255);
   text("Treasure: "+ score,30,30);
+  
 
 }
 
