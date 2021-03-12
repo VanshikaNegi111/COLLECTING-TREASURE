@@ -4,7 +4,7 @@ var gameState = PLAY;
 var path,boy,cash,diamonds,jwellery,sword, end;
 var pathImg,boyImg,cashImg,diamondsImg,jwelleryImg,swordImg, endImg;
 var score = 0;
-var countTouch = 3;
+var countTouch = 0;
 var cashG,diamondsG,jwelleryG,swordGroup;
 
 function preload(){
@@ -81,7 +81,7 @@ function draw() {
         countTouch = countTouch + 1;
       }
 
-      if(countTouch === 7 && swordGroup.isTouching(boy)) {
+      if( swordGroup.isTouching(boy) && countTouch === 5 ) {
         swordGroup.destroyEach();
         gameState = END;
     }
